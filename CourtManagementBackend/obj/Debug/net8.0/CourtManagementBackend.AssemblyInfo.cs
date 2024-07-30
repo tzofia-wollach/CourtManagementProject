@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CourtManagementBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70e7dd00a73a6a4e7414eeeba11bd6a68ab7fdba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba23ba7448afb8feef71aa27c0b25cbe94b272ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("CourtManagementBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CourtManagementBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
