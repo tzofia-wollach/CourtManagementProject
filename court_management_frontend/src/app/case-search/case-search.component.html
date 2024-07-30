@@ -1,0 +1,44 @@
+<!-- src/app/case-search/case-search.component.html -->
+<div class="search-bar">
+    <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="הזן מספר תיק או שם של אחד הצדדים" />
+    <button (click)="onSearch()">🔍</button>
+    <div class="filters">
+      <button (click)="onFilterChange('all')">הכל</button>
+      <button (click)="onFilterChange('myCases')">תיקים שלי</button>
+      <button (click)="onFilterChange('active')">תיקים פעילים</button>
+      <button (click)="onFilterChange('closed')">תיקים סגורים</button>
+    </div>
+  </div>
+  
+  <div class="sort-bar">
+    <div class="sort-options">
+        <select (change)="onSortChange($event)">
+            <option value="openingDate">מיון לפי: תאריך פתיחה</option>
+            <option value="caseNumber">מיון לפי: מספר תיק</option>
+        </select>     
+    </div>
+    <div class="results-count">
+      <span>נמצאו {{ filteredCases.length }} תוצאות</span>
+    </div>
+  </div>
+  
+  <div class="case-results">
+    <div *ngFor="let case of filteredCases" class="case-result">
+      <div class="case-header">
+        <div>
+          <strong>מספר תיק:</strong> {{ case.caseNumber }}
+          <strong>כותרת:</strong> {{ case.title }}
+        </div>
+        <div>
+          <strong>תאריך פתיחה:</strong> {{ case.openingDate | date }}
+        </div>
+      </div>
+      <div class="case-details">
+        <div class="case-row">
+          <span><strong>סטטוס:</strong> {{ case.status }}</span>
+          <span><strong>דיין:</strong> {{ case.judge }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
