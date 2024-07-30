@@ -39,7 +39,7 @@ export class CaseSearchComponent {
       .filter(c => {
         const matchesSearch = this.searchQuery === '' ||
           c.caseNumber.includes(this.searchQuery) ||
-          c.judge.includes(this.searchQuery); // Assuming 'sideName' is the field for the name of the side.
+          c.judge.includes(this.searchQuery); 
         const matchesFilter =
           this.filter === 'all' ||
           (this.filter === 'myCases' && c.judge === 'ישראל ישראלי') ||
