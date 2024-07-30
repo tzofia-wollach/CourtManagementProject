@@ -10,7 +10,7 @@ The system is based on a microservices architecture, where each service is respo
 
 - **User Management Service**: Manages user registration, authentication, and details.
 - **Case Management Service**: Handles case creation, retrieval, updates, and deletions.
-- **Document Management Service**: Manages the upload, retrieval, and deletion of case-related documents.
+- **Document Management Service**: Manages the upload, retrieval, and deletion of  documents to relevant parties.
 - **Discussion Management Service**: Schedules and manages discussions related to cases.
 - **Decision Management Service**: Manages decisions made in relation to cases.
 - **Email Service**: Sends notifications and updates to relevant parties.
