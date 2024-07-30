@@ -9,11 +9,14 @@ namespace CourtManagementBackend.Services
     public class CaseManagementService
     {
         private readonly HttpClient _httpClient;
+        private readonly EmailService _emailService;
 
-        public CaseManagementService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
+
+    public CaseManagementService(HttpClient httpClient, EmailService emailService)
+    {
+        _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+    }
 
         public async Task<Case> CreateCaseAsync(CaseData caseData)
         {
@@ -30,8 +33,11 @@ namespace CourtManagementBackend.Services
             // Simulate saving the case to a database
             SaveCaseToDatabase(newCase);
 
+            // Log case creation
+            Console.WriteLine($"Case {newCase.Id} created successfully.");
+
             // Step 2: Send email notification asynchronously
-            await SendEmailNotificationAsync(newCase);
+            await _emailService.SendEmailNotificationAsync(newCase);
 
             return newCase;
         }
@@ -42,27 +48,5 @@ namespace CourtManagementBackend.Services
             Console.WriteLine($"Case {newCase.Id} saved to the database.");
         }
 
-        private async Task SendEmailNotificationAsync(Case newCase)
-        {
-            var emailData = new
-            {
-                CaseId = newCase.Id,
-                Subject = $"New Case Created: {newCase.Title}",
-                Body = $"A new case has been created with the ID: {newCase.Id}"
-            };
-
-            var content = new StringContent(JsonSerializer.Serialize(emailData), System.Text.Encoding.UTF8, "application/json");
-
-            // Simulate calling an Email Service
-            var response = await _httpClient.PostAsync("http://emailservice/send", content);
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Email notification sent successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Failed to send email notification.");
-            }
-        }
     }
 }
